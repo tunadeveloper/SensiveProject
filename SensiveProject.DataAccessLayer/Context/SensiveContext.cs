@@ -1,18 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SensiveProject.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SensiveProject.DataAccessLayer.Context
 {
-	public class SensiveContext : DbContext
+	public class SensiveContext : IdentityDbContext<AppUser, AppRole, int>
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("Server=TUNA\\SQLEXPRESS;initial Catalog=SensiceBlogDb;integrated security=true");
+			optionsBuilder.UseSqlServer("Server=TUNA\\SQLEXPRESS;initial Catalog=SensiveBlogDb;integrated security=true");
 		}
 		public DbSet<Category> Categories { get; set; }
         public DbSet<Article> Articles { get; set; }
